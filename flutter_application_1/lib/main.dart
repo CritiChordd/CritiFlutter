@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 // Importa la pantalla Welcome (ajusta la ruta si tu carpeta es diferente)
-import 'screen/welcomescreen.dart';
-import 'screen/albumreviewscreen.dart';
+import 'screen/album_review_screen.dart';
 
 void main() {
   runApp(const MyApp());
