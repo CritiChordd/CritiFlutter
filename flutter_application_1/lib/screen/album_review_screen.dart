@@ -34,7 +34,7 @@ class AlbumReviewScreen extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Image.asset(
-                'assets/album.jpg', // pon tu imagen local aquí
+                'assets/images/newstart.jpg', // pon tu imagen local aquí
                 width: 200,
                 height: 200,
                 fit: BoxFit.cover,
@@ -69,7 +69,7 @@ class AlbumReviewScreen extends StatelessWidget {
           Center(
             child: CircleAvatar(
               radius: 30,
-              backgroundImage: AssetImage('assets/avatar.jpg'), // imagen tipo perfil
+              backgroundImage: AssetImage('assets/images/newstart.jpg'), // imagen tipo perfil
             ),
           ),
           const SizedBox(height: 18),

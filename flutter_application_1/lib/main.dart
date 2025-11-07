@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screen/welcome_screen.dart';
 // Importa la pantalla Welcome (ajusta la ruta si tu carpeta es diferente)
-import 'screen/album_review_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: AlbumReviewScreen(),
+      home: const WelcomeScreen(),
 
     );
   }

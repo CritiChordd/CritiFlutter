@@ -17,7 +17,7 @@ class WelcomeScreen extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Image.asset(
-              'assets/logo.png',  // Coloca tu logo aquí, tamaño: 32x32 px aprox
+              'assets/images/logo.jpeg',  // Coloca tu logo aquí, tamaño: 32x32 px aprox
               width: 32,
               height: 32,
             ),
@@ -40,7 +40,7 @@ class WelcomeScreen extends StatelessWidget {
           Column(
             children: [
               Image.asset(
-                'assets/welcome.png', // Tu imagen de portada
+                'assets/images/welcome.jpeg', // Tu imagen de portada
                 width: double.infinity,
                 height: 275,
                 fit: BoxFit.cover,
