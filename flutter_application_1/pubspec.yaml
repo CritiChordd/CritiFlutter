@@ -62,7 +62,11 @@ flutter:
     - assets/images/logo.jpeg
     - assets/images/newstart.jpg
     - assets/images/welcome.jpeg
-
+    - assets/images/dtmf.jpg
+    - assets/images/unico.jpg
+    - assets/images/por_si_alguien_nos_escucha.jpg
+    - assets/images/paz_mental.jpg
+    - assets/images/flores_en_anonimo.jpg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 
