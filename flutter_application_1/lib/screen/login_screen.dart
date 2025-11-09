@@ -1,108 +1,105 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../bloc/login/login_bloc.dart';
+import '../bloc/login/login_event.dart';
+import '../bloc/login/login_state.dart';
 
-class LoginrScreen extends StatelessWidget {
-const LoginrScreen({super.key});
 
-@override
-Widget build(BuildContext context) {
-return Scaffold(
-backgroundColor:Colors.black38,
-body:Center(
-child: Column(
-mainAxisAlignment: MainAxisAlignment.center,
-crossAxisAlignment: CrossAxisAlignment.center,
-children: [
-Spacer(),
-Image(image: AssetImage('assets/images/logo.jpeg'),
-width: 100,
-height: 100,
-),
-Text( 'inicia sesión',
-style: TextStyle(
-color: const Color.fromRGBO(255, 255, 255, 1),
-fontSize: 24,
-fontWeight: FontWeight.bold)
-),
-Padding(
-padding: const EdgeInsets.symmetric(vertical: 16),
-child: Center(
-child: SizedBox(
-width: 340,
-child: Column(
-crossAxisAlignment: CrossAxisAlignment.stretch,
-children: [
-TextField(
-style: const TextStyle(fontSize: 14, color: Colors.white),
-keyboardType: TextInputType.emailAddress,
-decoration: buildINputDecoration(hintText: 'Correo'),
-),
-const SizedBox(height: 10),
-TextField(
-style: const TextStyle(fontSize: 14, color: Colors.white),
-obscureText: true,
-decoration: buildINputDecoration(hintText: 'Contraseña'),
-),
-],
-),
-),
-),
-),
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
 
-Spacer(),
-BotonRegister(),
-Padding(
-padding: const EdgeInsets.all(8.0),
-child: Text( '¿No tienes una cuenta? Registrate',
-style: TextStyle(
-color: Colors.white,
-fontSize: 16,
-),
-),
-),
-Spacer(),
-],
-),
-)
-);
-}
-}
-class BotonRegister extends StatelessWidget {
-const BotonRegister({super.key});
-
-@override
-Widget build(BuildContext context) {
-return OutlinedButton(
-style: OutlinedButton.styleFrom(
-backgroundColor: const Color(0xFF099FB5),
-side: BorderSide(color: Colors.white),
-padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-shape: RoundedRectangleBorder(
-borderRadius: BorderRadius.circular(30),
-),
-),
-onPressed: () {}, child: Text('Inicia sesión',
-style:
-TextStyle(
-color: Colors.white
-),
-));
-}
-}
-
-InputDecoration buildINputDecoration({required String hintText}) {
-return InputDecoration(
-filled: true,
-fillColor: const Color(0xFF1E1E1E),
-hintText: hintText,
-hintStyle: TextStyle(color: Colors.white54,
-fontSize: 14),
-labelStyle: TextStyle(color: Colors.white,
-fontSize: 16,
-fontWeight: FontWeight.bold,
-),
-focusedBorder: UnderlineInputBorder(
-borderSide: BorderSide(color: Colors.white),
-
-),
-);
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: ListView(
+        padding: EdgeInsets.symmetric(horizontal: 32),
+        children: [
+          const SizedBox(height: 54),
+          IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.black),
+            onPressed: () => context.pop(),
+            alignment: Alignment.centerLeft,
+          ),
+          const SizedBox(height: 8),
+          Center(
+            child: CircleAvatar(
+              backgroundImage: AssetImage('assets/images/logo.jpeg'),
+              radius: 54,
+              backgroundColor: Colors.grey[100],
+            ),
+          ),
+          const SizedBox(height: 16),
+          Center(
+            child: Text(
+              'Accede a tu cuenta',
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black87),
+            ),
+          ),
+          const SizedBox(height: 32),
+          TextField(
+            decoration: InputDecoration(
+              labelText: "Email",
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
+            ),
+          ),
+          const SizedBox(height: 16),
+          TextField(
+            obscureText: true,
+            decoration: InputDecoration(
+              labelText: "Contraseña",
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
+            ),
+          ),
+          const SizedBox(height: 12),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Checkbox(value: false, onChanged: (_) {}),
+              const Text('Recordarme'),
+            ],
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Color(0xFF00CFFF),
+              minimumSize: Size(double.infinity, 46),
+              shape: StadiumBorder(),
+            ),
+            onPressed: () => context.push('/home'),
+            child: const Text('Ingresar', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+          ),
+          TextButton(
+            onPressed: () {},
+            child: Text('¿Olvidaste tu contraseña?', style: TextStyle(color: Color(0xFF00CFFF))),
+          ),
+          const SizedBox(height: 10),
+          const Divider(),
+          const SizedBox(height: 10),
+          Center(child: Text('Continuar con')),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              IconButton(icon: Icon(Icons.g_mobiledata, size: 35), onPressed: () {}, tooltip: 'Google'),
+              IconButton(icon: Icon(Icons.facebook, size: 32), onPressed: () {}, tooltip: 'Facebook'),
+              IconButton(icon: Icon(Icons.apple, size: 28), onPressed: () {}, tooltip: 'Apple'),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('¿No tienes una cuenta?'),
+              TextButton(
+                onPressed: () => context.push('/register'),
+                child: Text('Regístrate', style: TextStyle(color: Color(0xFF00CFFF))),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+        ],
+      ),
+    );
+  }
 }

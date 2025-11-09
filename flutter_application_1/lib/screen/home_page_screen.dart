@@ -1,246 +1,129 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class HomePageScreen extends StatelessWidget {
   const HomePageScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Usar las nuevas imágenes que están en assets/images/
-    // (dtmf.jpg, logo.jpeg, newstart.jpg, por_si_alguien_nos_escucha.jpg, unico.jpg, welcome.jpeg)
+    // Ejemplo de datos
     final novedades = [
-      {
-        'image': 'assets/images/newstart.jpg',
-        'title': 'A New Start',
-        'artist': 'Rels B'
-      },
-      {
-        'image': 'assets/images/paz_mental.jpg',
-        'title': 'paz mental',
-        'artist': 'Eladio Carrion'
-      },
-      {
-        'image': 'assets/images/dtmf.jpg',
-        'title': 'DbTmF',
-        'artist': 'Bad Bunny'
-      },
+      {'id': '1', 'img': 'assets/images/newstart.jpg', 'titulo': 'A New Start', 'autor': 'Rels B'},
+      {'id': '2', 'img': 'assets/images/paz_mental.jpg', 'titulo': 'Paz Mental', 'autor': 'Eladio Carrion'},
+      {'id': '3', 'img': 'assets/images/dtmf.jpg', 'titulo': 'DbTmF', 'autor': 'Bad Bunny'},
+      {'id': '4', 'img': 'assets/images/unico.jpg', 'titulo': 'Único', 'autor': 'Artista'},
     ];
-
-    final nuevoEntreAmigos = [
-      {
-        'image': 'assets/images/por_si_alguien_nos_escucha.jpg',
-        'title': 'Por Si Alguien Nos Escucha',
-        'artist': 'Artista'
-      },
-      {
-        'image': 'assets/images/unico.jpg',
-        'title': 'Único',
-        'artist': 'Artista'
-      },
-      {
-        'image': 'assets/images/flores_en_anonimo.jpg',
-        'title': 'Flores en Anónimo',
-        'artist': 'Artista'
-      },
+    final nuevos = [
+      {'id': '5', 'img': 'assets/images/por_si_alguien_nos_escucha.jpg', 'titulo': 'Alguien nos esc.', 'autor': 'Artista'},
+      {'id': '6', 'img': 'assets/images/unico.jpg', 'titulo': 'Único', 'autor': 'Artista'},
     ];
-
-    final popularAmigos = [
-      {
-        'image': 'assets/images/dtmf.jpg',
-        'title': 'Popular 1',
-        'artist': ''
-      },
-      {
-        'image': 'assets/images/newstart.jpg',
-        'title': 'Popular 2',
-        'artist': ''
-      },
-      {
-        'image': 'assets/images/paz_mental.jpg',
-        'title': 'Popular 3',
-        'artist': ''
-      },
+    final popular = [
+      {'id': '7', 'img': 'assets/images/flores_en_anonimo.jpg', 'titulo': 'Flores en Anónimo', 'autor': 'Artista'},
+      {'id': '8', 'img': 'assets/images/logo.jpeg', 'titulo': 'Otro', 'autor': 'Artista'},
     ];
 
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        elevation: 0,
         backgroundColor: Colors.white,
-        automaticallyImplyLeading: false,
-        title: const Text(
-          'Home Page',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.normal),
+        elevation: 0,
+        title: Row(
+          children: [
+            CircleAvatar(backgroundImage: AssetImage('assets/images/logo.jpeg'), radius: 21, backgroundColor: Colors.grey),
+            const SizedBox(width: 10),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text('Bienvenido de vuelta', style: TextStyle(fontSize: 13, color: Colors.black54)),
+                Text('Usuario', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16)),
+              ],
+            ),
+          ],
         ),
+        actions: [Icon(Icons.notifications_none, color: Colors.black)],
       ),
       body: ListView(
-        padding: const EdgeInsets.all(18),
+        padding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
         children: [
-          // Barra superior usuario y acciones
-          Row(
-            children: [
-              CircleAvatar(
-                backgroundColor: Colors.grey[200],
-                backgroundImage: AssetImage('assets/images/avatar.jpg'),
-                radius: 21,
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text('Bienvenido de vuelta',
-                        style: TextStyle(
-                            fontSize: 14, color: Colors.black54)),
-                    Text('Juan',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 17,
-                            color: Colors.black)),
-                  ],
-                ),
-              ),
-              IconButton(
-                icon: const Icon(Icons.notifications, color: Colors.black87),
-                onPressed: () {},
-              ),
-              IconButton(
-                icon: const Icon(Icons.settings, color: Colors.black87),
-                onPressed: () {},
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          // Buscador visual
           Container(
             decoration: BoxDecoration(
-                color: Colors.grey[100],
-                borderRadius: BorderRadius.circular(12)),
+              color: Color(0xFFF5F5F5),
+              borderRadius: BorderRadius.circular(12),
+            ),
             child: const TextField(
+              style: TextStyle(color: Colors.black87),
               decoration: InputDecoration(
-                  hintText: "Busca entre más 5 millones de álbumes",
-                  hintStyle: TextStyle(fontSize: 14),
-                  prefixIcon: Icon(Icons.search),
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.all(12)),
+                prefixIcon: Icon(Icons.search, color: Colors.black45),
+                border: InputBorder.none,
+                hintText: "Busca entre álbumes...",
+                hintStyle: TextStyle(color: Colors.black45, fontSize: 15),
+                contentPadding: EdgeInsets.all(14),
+              ),
             ),
           ),
-          const SizedBox(height: 22),
-
-          // Novedades
-          const Text('Novedades',
-              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 17)),
-          const SizedBox(height: 8),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: novedades
-                .map(
-                  (item) => AlbumCardMini(
-                    image: item['image']!,
-                    title: item['title']!,
-                    artist: item['artist']!,
-                  ),
-                )
-                .toList(),
-          ),
           const SizedBox(height: 20),
-
-          // Nuevo entre amigos
-          const Text('Nuevo entre amigos',
-              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 17)),
-          const SizedBox(height: 8),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: nuevoEntreAmigos
-                .map(
-                  (item) => AlbumCardMini(
-                    image: item['image']!,
-                    title: item['title']!,
-                    artist: item['artist']!,
-                  ),
-                )
-                .toList(),
-          ),
-          const SizedBox(height: 20),
-
-          // Popular entre amigos
-          const Text('Popular entre amigos',
-              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 17)),
-          const SizedBox(height: 8),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: popularAmigos
-                .map(
-                  (item) => AlbumCardMini(
-                    image: item['image']!,
-                    title: item['title']!,
-                    artist: item['artist']!,
-                  ),
-                )
-                .toList(),
-          ),
+          heading('Novedades', Colors.black),
+          albumsRow(context, novedades, Colors.white),
+          heading('Nuevo entre amigos', Colors.black),
+          albumsRow(context, nuevos, Colors.white),
+          heading('Popular entre amigos', Colors.black),
+          albumsRow(context, popular, Colors.white),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: const Color(0xFFF4FBFD),
-        currentIndex: 0,
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.black38,
+        backgroundColor: Colors.white,
         type: BottomNavigationBarType.fixed,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
+        currentIndex: 0,
+        selectedItemColor: Color(0xFF00CFFF),
+        unselectedItemColor: Colors.black38,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Inicio'),
-          BottomNavigationBarItem(icon: Icon(Icons.add_circle_outline), label: 'Agregar'),
+          BottomNavigationBarItem(icon: Icon(Icons.library_music), label: 'Biblioteca'),
           BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: 'Perfil'),
         ],
+        onTap: (i) {
+          if (i == 2) context.push('/profile');
+        },
       ),
     );
   }
-}
 
-class AlbumCardMini extends StatelessWidget {
-  final String image, title, artist;
-  const AlbumCardMini(
-      {super.key,
-      required this.image,
-      required this.title,
-      required this.artist});
+  Widget heading(String label, Color color) => Padding(
+    padding: const EdgeInsets.only(bottom: 8, top: 18),
+    child: Text(label, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18, color: color)),
+  );
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 104,
-      margin: const EdgeInsets.only(right: 12, bottom: 8),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          AspectRatio(
-            aspectRatio: 1,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(6),
-              child: Image.asset(
-                image,
-                fit: BoxFit.cover,
+  Widget albumsRow(BuildContext context, List<Map<String, String>> albumes, Color textColor) => SizedBox(
+    height: 160,
+    child: ListView.separated(
+      scrollDirection: Axis.horizontal,
+      itemCount: albumes.length,
+      separatorBuilder: (c, i) => const SizedBox(width: 16),
+      itemBuilder: (context, i) {
+        var a = albumes[i];
+        return GestureDetector(
+          onTap: () => context.push('/album/${a['id']}'),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(15),
+                child: Image.asset(a['img']!, width: 100, height: 100, fit: BoxFit.cover),
               ),
-            ),
+              const SizedBox(height: 8),
+              SizedBox(
+                width: 100,
+                child: Text(a['titulo']!,
+                  style: TextStyle(color: textColor, fontWeight: FontWeight.bold, fontSize: 14),
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Text(a['autor']!, style: TextStyle(color: Colors.black54, fontSize: 12), overflow: TextOverflow.ellipsis),
+            ],
           ),
-          const SizedBox(height: 4),
-          Text(
-            title,
-            style: const TextStyle(
-                fontWeight: FontWeight.bold, fontSize: 13, letterSpacing: 0),
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-          ),
-          Text(
-            artist,
-            style: const TextStyle(
-                color: Colors.black54, fontSize: 11, letterSpacing: 0),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ],
-      ),
-    );
-  }
+        );
+      },
+    ),
+  );
 }
